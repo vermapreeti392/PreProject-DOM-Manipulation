@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    
+    <style>
+        #parent-div {
+            height: 400px;
+            width: 700px;
+            border: 5px solid green;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div id="parent-div">
+        </div>
+        <div class="btns">
+            <button id="changeColor">Change Color</button>
+            <button id="addChild">Add Child</button>
+            <button id="removeChild">Remove Child</button>
+        </div>
+    </div>
+    <script>
+        let parent = document.getElementById('parent-div');
+        let changeColor = document.getElementById('changeColor');
+        let addChild = document.getElementById('addChild');
+        let removeChild = document.getElementById('removeChild');
+        let count = 1;
+        
+        // change color
+        changeColor.addEventListener('click', ()=>{ 
+            count = (count+20);                      
+            parent.style.backgroundColor = `hsl(${count}, 100%, 50%)`;
+        })
+        // add child        
+        addChild.addEventListener('click', ()=>{           
+            let child = document.createElement('div');
+            // console.log(child);
+            child.style.height = '100px'
+            child.style.width = '100px';
+            child.style.border = '2px solid black'
+            parent.appendChild(child)
+
+            
+        })
+        // remove child
+        removeChild.addEventListener('click', ()=>{
+            //console.log(parent.children)
+            let child = parent.lastChild           
+            parent.removeChild(child);            
+        })
+    </script>
+</body>
+
+</html>
